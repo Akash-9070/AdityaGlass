@@ -6,10 +6,18 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 
 const projects = [
-  { id: 1, title: 'Modern Office Building', image: '/office.jpg' },
-  { id: 2, title: 'Luxury Residence', image: '/home.jpg' },
-  { id: 3, title: 'Shopping Mall', image: '/buildings.jpg' },
-  { id: 4, title: 'Hotel Facade', image: '/pexels-sevenstormphotography-443383.jpg' },
+  { id: 1, title: 'Modern Office Building', image: '/placeholder.svg' },
+  { id: 2, title: 'Luxury Residence', image: '/placeholder.svg' },
+  { id: 3, title: 'Shopping Mall', image: '/placeholder.svg' },
+  { id: 4, title: 'Hotel Facade', image: '/placeholder.svg' },
+  { id: 5, title: 'Corporate Headquarters', image: '/placeholder.svg' },
+  { id: 6, title: 'Residential Complex', image: '/placeholder.svg' },
+  { id: 7, title: 'Airport Terminal', image: '/placeholder.svg' },
+  { id: 8, title: 'Museum of Modern Art', image: '/placeholder.svg' },
+  { id: 9, title: 'University Campus', image: '/placeholder.svg' },
+  { id: 10, title: 'Sports Stadium', image: '/placeholder.svg' },
+  { id: 11, title: 'Public Library', image: '/placeholder.svg' },
+  { id: 12, title: 'Beachfront Resort', image: '/placeholder.svg' },
 ]
 
 const Portfolio = () => {
@@ -27,7 +35,7 @@ const Portfolio = () => {
         >
           Our Portfolio
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {projects.map((project) => (
             <motion.div 
               key={project.id} 
@@ -42,9 +50,9 @@ const Portfolio = () => {
               <Image
                 src={project.image}
                 alt={project.title}
-                width={800}
-                height={600}
-                className="rounded-lg shadow-md transition duration-300 group-hover:opacity-75"
+                width={400}
+                height={300}
+                className="rounded-lg shadow-md transition duration-300 group-hover:opacity-75 object-cover w-full h-64"
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
                 <h3 className="text-white text-xl font-semibold text-center bg-black bg-opacity-50 p-4 rounded">
