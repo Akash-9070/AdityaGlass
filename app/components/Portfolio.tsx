@@ -6,19 +6,19 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 
 const projects = [
-  { id: 1, title: 'Modern Office Building', image: '/placeholder.svg' },
-  { id: 2, title: 'Luxury Residence', image: '/placeholder.svg' },
-  { id: 3, title: 'Shopping Mall', image: '/placeholder.svg' },
-  { id: 4, title: 'Hotel Facade', image: '/placeholder.svg' },
-  { id: 5, title: 'Corporate Headquarters', image: '/placeholder.svg' },
-  { id: 6, title: 'Residential Complex', image: '/placeholder.svg' },
-  { id: 7, title: 'Airport Terminal', image: '/placeholder.svg' },
-  { id: 8, title: 'Museum of Modern Art', image: '/placeholder.svg' },
-  { id: 9, title: 'University Campus', image: '/placeholder.svg' },
-  { id: 10, title: 'Sports Stadium', image: '/placeholder.svg' },
-  { id: 11, title: 'Public Library', image: '/placeholder.svg' },
-  { id: 12, title: 'Beachfront Resort', image: '/placeholder.svg' },
-]
+  { id: 1, title: 'Modern Office Building', image: '/pexels-pixabay-53212.jpg' },
+  { id: 2, title: 'Luxury Residence', image: '/pexels-sevenstormphotography-443383.jpg' },
+  { id: 3, title: 'Shopping Mall', image: '/pexels-riciardus-243076.jpg' },
+  { id: 4, title: 'Hotel Facade', image: '/pexels-pixabay-258154.jpg' },
+  { id: 5, title: 'Corporate Headquarters', image: '/buildings.jpg' },
+  { id: 6, title: 'Residential Complex', image: '/home.jpg' },
+  { id: 7, title: 'Airport Terminal', image: '/pexels-tanathip-rattanatum-1050216-2026324.jpg' },
+  { id: 8, title: 'Museum of Modern Art', image: '/pexels-ena-marinkovic-1814213-3697742.jpg' },
+  { id: 9, title: 'University Campus', image: '/office.jpg' },
+  { id: 10, title: 'Sports Stadium', image: '/pexels-tomfisk-3441726.jpg' },
+  { id: 11, title: 'Public Library', image: '/pexels-polina-zimmerman-3747505.jpg' },
+  { id: 12, title: 'Beachfront Resort', image: '/pexels-kelvinernandi-3075763.jpg' },
+];
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
@@ -35,15 +35,27 @@ const Portfolio = () => {
         >
           Our Portfolio
         </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+        >
           {projects.map((project) => (
             <motion.div 
               key={project.id} 
-              className="relative group cursor-pointer"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
+              className="relative group cursor-pointer overflow-hidden rounded-lg"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+              }}
               whileHover={{ scale: 1.05 }}
               onClick={() => setSelectedProject(project.id)}
             >
@@ -52,16 +64,16 @@ const Portfolio = () => {
                 alt={project.title}
                 width={400}
                 height={300}
-                className="rounded-lg shadow-md transition duration-300 group-hover:opacity-75 object-cover w-full h-64"
+                className="transition duration-300 group-hover:scale-110 object-cover w-full h-64"
               />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                <h3 className="text-white text-xl font-semibold text-center bg-black bg-opacity-50 p-4 rounded">
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                <h3 className="text-white text-xl font-semibold text-center p-4">
                   {project.title}
                 </h3>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
       <AnimatePresence>
         {selectedProject !== null && (

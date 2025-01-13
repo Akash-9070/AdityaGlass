@@ -8,7 +8,9 @@ const MapAndAddress = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="rounded-lg overflow-hidden shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.8798668611384!2d75.78140731503945!3d26.84998998315351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db5d9f3b1b1b3%3A0x5b1b1b1b1b1b1b1b!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1623456789012!5m2!1sen!2sin"
+              src="https://www.google.com/maps?q=26.90506344081488,75.72431355915595&output=embed"
+
+
               width="100%"
               height="450"
               style={{ border: 0 }}
@@ -22,8 +24,8 @@ const MapAndAddress = () => {
               <div className="flex items-start">
                 <MapPin className="w-6 h-6 text-indigo-600 mr-4 mt-1" />
                 <p>
-                  123 Glass Street, Crystal City<br />
-                  Jaipur, Rajasthan 302001<br />
+                  14 Vivek, Gandhipath West, Near 200ft. Bypass  <br />
+                  Vaishali Nagar, Jaipur, Rajasthan 302021<br />
                   India
                 </p>
               </div>
@@ -33,7 +35,7 @@ const MapAndAddress = () => {
               </div>
               <div className="flex items-center">
                 <Mail className="w-6 h-6 text-indigo-600 mr-4" />
-                <p>info@adityaglass.com</p>
+                <p>Adityaglassjaipur@gmail.com</p>
               </div>
             </div>
             <div className="mt-8">

@@ -2,18 +2,18 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ReactTyped } from 'react-typed'
-import { Mic, Brain, Volume2, Repeat } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
+import { Pencil, ShieldCheck, HeadsetIcon as HeadsetMic, Clock } from 'lucide-react'
 
 const words = ['Elegance', 'Innovation', 'Quality', 'Durability'];
 
 const ParallaxHero = () => {
-  const [windowHeight, setWindowHeight] = useState(0)
   const [wordIndex, setWordIndex] = useState(0)
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 500], [0, 150])
 
   useEffect(() => {
-    setWindowHeight(window.innerHeight)
     const interval = setInterval(() => {
       setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
     }, 2000);
@@ -22,8 +22,11 @@ const ParallaxHero = () => {
   }, [])
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-100 to-indigo-100">
-      <div className="absolute inset-0">
+    <div className="relative min-h-screen overflow-hidden">
+      <motion.div 
+        className="absolute inset-0"
+        style={{ y }}
+      >
         <Image
           src="/placeholder.svg"
           alt="Modern glass building"
@@ -32,8 +35,9 @@ const ParallaxHero = () => {
           quality={100}
           className="opacity-20"
         />
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center">
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-100 to-indigo-100 opacity-80" />
+      <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="text-center px-4">
           <motion.h1 
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-black mb-4"

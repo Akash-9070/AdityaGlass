@@ -21,13 +21,23 @@ const Features = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-gray-50 p-6 rounded-lg shadow-md"
+              className="bg-gray-50 p-6 rounded-lg shadow-md cursor-pointer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ 
+                scale: 1.05, 
+                boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
+                backgroundColor: "#EEF2FF"
+              }}
             >
-              <feature.icon className="w-12 h-12 text-indigo-600 mb-4" />
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <feature.icon className="w-12 h-12 text-indigo-600 mb-4" />
+              </motion.div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </motion.div>

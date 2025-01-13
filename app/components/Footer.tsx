@@ -9,7 +9,7 @@ const Footer = () => {
                       </div>
                       <div className="w-full md:w-1/3 text-center mb-4 md:mb-0">
                         <h4 className="text-lg font-semibold mb-2">Contact</h4>
-                        <p>Email: AdityaGlass@gmail.com</p>
+                        <p>Email: Adityaglassjaipur@gmail.com</p>
                         <p>Phone: +91 9828788889</p>
                       </div>
                       <div className="w-full md:w-1/3 text-center md:text-right">
