@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { AnimatePresence } from 'framer-motion'
-import { Pencil, ShieldCheck, HeadsetIcon as HeadsetMic, Clock } from 'lucide-react'
 
 const words = ['Elegance', 'Innovation', 'Quality', 'Durability'];
 
