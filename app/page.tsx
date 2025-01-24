@@ -4,6 +4,8 @@ import Portfolio from './components/Portfolio'
 import MapAndAddress from './components/MapAndAddress'
 import Contact from './components/Contact'
 import Features from './components/Features'
+import ProjectGallery from './components/Products'
+
 
 export default function Home() {
   return (
@@ -11,6 +13,7 @@ export default function Home() {
       <ParallaxHero />
       <Features />
       <Services />
+      <ProjectGallery />
       <Portfolio />
       <MapAndAddress />
       <Contact />

@@ -12,6 +12,7 @@ const ParallaxHero = () => {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
 
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
