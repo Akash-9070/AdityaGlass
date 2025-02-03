@@ -5,13 +5,20 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { AnimatePresence } from 'framer-motion'
+import dynamic from 'next/dynamic'
 
 const words = ['Elegance', 'Innovation', 'Quality', 'Durability'];
 
-const ParallaxHero = () => {
+// Create a client-only version of the component
+const ParallaxHero = dynamic(() => Promise.resolve(() => {
   const [wordIndex, setWordIndex] = useState(0)
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,6 +27,10 @@ const ParallaxHero = () => {
 
     return () => clearInterval(interval);
   }, [])
+
+  if (!isMounted) {
+    return null // or a loading state
+  }
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -100,7 +111,9 @@ const ParallaxHero = () => {
       </div>
     </div>
   )
-}
+}), {
+  ssr: false // This ensures the component only renders on the client
+})
 
 export default ParallaxHero
 
