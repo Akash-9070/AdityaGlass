@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
@@ -13,7 +13,6 @@ const ParallaxHero = () => {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
 
-  
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
