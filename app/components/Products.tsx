@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { useState } from 'react'
 
 const projects = [
   {
@@ -38,6 +39,9 @@ const projects = [
 ]
 
 export default function ProjectGallery() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedTitle, setSelectedTitle] = useState<string | null>(null)
+
   return (
     <section className="py-20 bg-[#F5F5F5]">
       <div className="container mx-auto px-4">
@@ -63,7 +67,11 @@ export default function ProjectGallery() {
                 ease: "easeOut"
               }}
               viewport={{ once: true, margin: "-100px" }}
-              className="group relative overflow-hidden rounded-lg shadow-lg bg-white"
+              className="group relative overflow-hidden rounded-lg shadow-lg bg-white cursor-pointer"
+              onClick={() => {
+                setSelectedImage(project.image)
+                setSelectedTitle(project.title)
+              }}
             >
               <div className="relative h-[300px] overflow-hidden">
                 <Image
@@ -87,14 +95,56 @@ export default function ProjectGallery() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-center mt-12"
-        >
-          
-        </motion.div>
+        {/* Image Modal */}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {
+                setSelectedImage(null)
+                setSelectedTitle(null)
+              }}
+              className="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col items-center justify-center p-4"
+              style={{ top: 0, left: 0, right: 0, bottom: 0 }}
+            >
+              <motion.div
+                initial={{ scale: 0.5 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.5 }}
+                className="relative max-w-7xl max-h-[90vh]"
+                onClick={e => e.stopPropagation()}
+              >
+                <Image
+                  src={selectedImage}
+                  alt={selectedTitle || "Product Image"}
+                  width={1200}
+                  height={800}
+                  className="rounded-lg"
+                  priority
+                />
+                {selectedTitle && (
+                  <h3 className="text-white text-xl font-semibold mt-4 text-center">
+                    {selectedTitle}
+                  </h3>
+                )}
+                <button
+                  onClick={() => {
+                    setSelectedImage(null)
+                    setSelectedTitle(null)
+                  }}
+                  className="absolute top-4 right-4 bg-white rounded-full p-2 hover:bg-gray-100 transition-colors"
+                  aria-label="Close preview"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )
